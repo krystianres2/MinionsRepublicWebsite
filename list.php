@@ -60,53 +60,68 @@ $users = $usersQuery->fetchAll();
 	<!--[if lt IE 9]>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
 	<![endif]-->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+	<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+	<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap4.min.js"></script>
 </head>
 
-<body>
+<body class="bg-info">
 
 	<div class="container">
-
-		<header>
-			<h1>Newsletter</h1>
-		</header>
-
-		<main>
-			<article>
-
-				<table>
+		<div class="row justify-content-center">
+			<div class="col-lg-10 bg-light rounded my-2 py-2">
+				<table class="table table-bordered table-striped table-hover">
 					<thead>
 						<tr>
-							<th colspan="2">Łącznie rekordów:
-								<?= $usersQuery->rowCount() ?>
-							</th>
-						</tr>
-						<tr>
 							<th>ID</th>
-							<th>E-mail</th>
+							<th>User</th>
+							<th>email</th>
+							<th>drewno</th>
+							<th>kamien</th>
+							<th>zboze</th>
+							<th>dniPremium</th>
+							<th>image_url</th>
 						</tr>
 					</thead>
-					<tbody id="tableContent">
-						<!-- <?php
+					<tbody>
+						<img src="" alt="">
+						<?php
 						foreach ($users as $user) {
-							echo "<tr><td>{$user['id']}</td><td>{$user['email']}</td><td><button value={$user['id']}>approve</button></td></tr>";
-						}
-						?> -->
+						?>
+						<tr>
+							<td><?=$user['id'] ?></td>
+							<td><?=$user['user'] ?></td>
+							<td><?=$user['email'] ?></td>
+							<td><?=$user['drewno'] ?></td>
+							<td><?=$user['kamien'] ?></td>
+							<td><?=$user['zboze'] ?></td>
+							<td><?=$user['dnipremium'] ?></td>
+							<td><img src="uploads/<?= $user['image_url'] ?>" alt="User Image" width="50" height="50"></td>
+						</tr>
+						<?php
+						} ?>
 					</tbody>
 				</table>
-				
-				<!-- <form id="form" action="saveApproved.php" method="post">
-					<input type="submit" value="Submit">
-				</form>	 -->
-				
-				<p><a href="logout.php">Wyloguj się!</a></p>
 
-			</article>
-		</main>
+			</div>
+		</div>
+
 	</div>
-	<script>
+	<p><a href="logout.php">Wyloguj się!</a></p>
+	<!-- <script>
 		var usersData = <?php echo json_encode($users); ?>;
 
 	</script>
-	<script src="list.js"></script>
+	<script src="list.js"></script> -->
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$('table').DataTable();
+		});
+	</script>
 </body>
+
 </html>
